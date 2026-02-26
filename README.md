@@ -17,6 +17,27 @@ Backend API untuk aplikasi Membership Gym menggunakan Node.js, Express, dan MySQ
 - MySQL (v5.7 atau lebih tinggi)
 - npm atau yarn
 
+## 🐳 Run in 1 Docker Container (Express + MySQL)
+
+```bash
+# build image
+docker build -t gym-api-single .
+
+# run container (API:3000, MySQL:3306)
+docker run -d --name gym-api \
+  -p 3000:3000 \
+  -p 3306:3306 \
+  -e PORT=3000 \
+  -e DB_NAME=membership_gym \
+  -e DB_USER=root \
+  -e DB_PASSWORD=root \
+  -e DB_HOST=127.0.0.1 \
+  -e DB_PORT=3306 \
+  gym-api-single
+```
+
+Schema otomatis diimport dari `schema.sql` saat first run container.
+
 ## 🛠️ Installation
 
 1. **Clone repository atau navigate ke folder api**
