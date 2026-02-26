@@ -23,20 +23,20 @@ Backend API untuk aplikasi Membership Gym menggunakan Node.js, Express, dan MySQ
 # build image
 docker build -t gym-api-single .
 
-# run container (API:3000, MySQL:3306)
-docker run -d --name gym-api \
-  -p 3000:3000 \
-  -p 3306:3306 \
-  -e PORT=3000 \
-  -e DB_NAME=membership_gym \
-  -e DB_USER=root \
-  -e DB_PASSWORD=root \
-  -e DB_HOST=127.0.0.1 \
-  -e DB_PORT=3306 \
-  gym-api-single
+# run container (simple)
+docker run -d --name gym-api -p 3000:3000 gym-api-single
 ```
 
 Schema otomatis diimport dari `schema.sql` saat first run container.
+MySQL tetap jalan di dalam container, jadi tidak perlu expose port `3306` ke host.
+
+## 📦 Publish to GHCR
+
+Workflow sudah disiapkan di `.github/workflows/ghcr.yml`.
+
+1. Push ke branch `main` untuk auto-publish image.
+2. Image akan tersedia di:
+   `ghcr.io/fadilsflow/iwan-gym-api:latest`
 
 ## 🛠️ Installation
 

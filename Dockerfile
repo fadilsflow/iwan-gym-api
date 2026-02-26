@@ -7,6 +7,14 @@ RUN apt-get update \
 
 WORKDIR /app
 
+# Default runtime config, so docker run can stay minimal
+ENV PORT=3000 \
+  DB_NAME=membership_gym \
+  DB_USER=root \
+  DB_PASSWORD=root \
+  DB_HOST=127.0.0.1 \
+  DB_PORT=3306
+
 # Install app dependencies first (layer cache)
 COPY package*.json ./
 RUN npm ci --omit=dev
